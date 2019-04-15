@@ -1,7 +1,8 @@
 # ScreenRecorder
+
 Record your screen for X minuts every X minuts, kepp only last Y video files and saves outputs at your desired location
 
-# it's a full Pycharm project you probably not gonna need all of it
+it's a full Pycharm project you probably not gonna need all of it
 
 run example:
 
