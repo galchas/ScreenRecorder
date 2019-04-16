@@ -29,11 +29,10 @@ class Envar:
                 f.write('{"work" : "true"}')
                 f.close()
 
-sr = None
 
 class RecordCycle:
     sr = None
-#record to new file every 'record_time' and save them in records_path until Envar.is_working() is false
+    #record to new file every 'record_time' and save them in records_path until Envar.is_working() is false
     @staticmethod
     def start(record_time, records_path, save_last):
         Envar.set('true')  # start record
