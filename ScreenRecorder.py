@@ -7,6 +7,7 @@ import cv2
 from PIL import ImageGrab
 from win32api import GetSystemMetrics
 from datetime import datetime
+from RecordCycle import Envar
 
 
 class ScreenRecorder:
@@ -38,6 +39,11 @@ class ScreenRecorder:
         finally:
             vid.release()
             self._manage_records()
+
+    @staticmethod
+    def stop_record():
+        Envar.set('false')
+        print('Stop recording')
 
     def _manage_records(self):
         record_list = [str(f.split('.')[0].split('\\')[-1:]).replace("[\'", '').replace("']", '') for f in

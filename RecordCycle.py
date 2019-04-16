@@ -29,20 +29,29 @@ class Envar:
                 f.write('{"work" : "true"}')
                 f.close()
 
+sr = None
 
+class RecordCycle:
+    sr = None
 #record to new file every 'record_time' and save them in records_path until Envar.is_working() is false
-def start(record_time, records_path, save_last):
-    Envar.set('true')  # start record
-    while True:
-        sr = ScreenRecorder(time_min=record_time, records_path=records_path, records_to_keep=save_last)
-        sr.record()
-        if not Envar.is_working():
-            break
-    print ("recorded terminated! :)")
+    @staticmethod
+    def start(record_time, records_path, save_last):
+        Envar.set('true')  # start record
+        while True:
+            RecordCycle.sr = ScreenRecorder(time_min=record_time, records_path=records_path, records_to_keep=save_last)
+            RecordCycle.sr.record()
+            if not Envar.is_working():
+                break
+        print ("recorded terminated! :)")
+
+    @staticmethod
+    def stop_recording():
+        if RecordCycle.sr is not None:
+            ScreenRecorder.stop_record()
 
 
 if __name__ == '__main__':
-    start()
+    RecordCycle.start()
 
 
 
